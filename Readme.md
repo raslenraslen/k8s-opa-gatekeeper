@@ -42,14 +42,44 @@ Il ne fait pas partie du noyau Kubernetes, mais il s’appuie sur OPA pour faire
 # 🛠️ Étape par étape : Configurer OPA dans Kubernetes avec Gatekeeper 
 
 
-**🔹 Step 1: Install Gatekeeper (OPA for Kubernetes)**
+**🔹 Étape 1 : Installer Gatekeeper (OPA pour Kubernetes)**
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.14/deploy/gatekeeper.yaml
 ```
 
-**Verify the pods are running:**
+**Vérifie que les pods sont bien en cours d’exécution :**
 
 ````
 kubectl get pods -n gatekeeper-system
 ````
+
+
+ **🔹Étape 2 : Définir un ConstraintTemplate**
+
+ 🔧 Cette étape permet de créer une politique 🧩 indiquant que les conteneurs 🚫 ne doivent pas s’exécuter avec l’utilisateur root 👑.
+
+
+ ```
+ apiVersion: templates.gatekeeper.sh/v1beta1  
+kind: ConstraintTemplate  
+metadata:   
+   name: k8spsprestrictrunasroot  
+spec:   
+   crd:     
+      spec:       
+         names:         
+            kind: K8sPSPRestrictRunAsRoot   
+targets:     
+   - target: admission.k8s.gatekeeper.sh       
+   rego: |         
+      package k8spsprestrictrunasroot           
+
+      violation[{"msg": msg}] {           
+         container := input.review.object.spec.containers[_]           
+         not container.securityContext.runAsNonRoot           
+         msg := sprintf("Container '%v' is running as root, which is not allowed.",       [container.name])        
+    } 
+    ```
+    
+
