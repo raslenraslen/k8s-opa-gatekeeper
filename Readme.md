@@ -59,30 +59,9 @@ kubectl get pods -n gatekeeper-system
 
  🔧 Cette étape permet de créer une politique 🧩 indiquant que les conteneurs 🚫 ne doivent pas s’exécuter avec l’utilisateur root 👑.
 
-
- ````
- 
- apiVersion: templates.gatekeeper.sh/v1beta1  
-kind: ConstraintTemplate  
-metadata:   
-   name: k8spsprestrictrunasroot  
-spec:   
-   crd:     
-      spec:       
-         names:         
-            kind: K8sPSPRestrictRunAsRoot   
-targets:     
-   - target: admission.k8s.gatekeeper.sh       
-   rego: |         
-      package k8spsprestrictrunasroot           
-
-      violation[{"msg": msg}] {           
-         container := input.review.object.spec.containers[_]           
-         not container.securityContext.runAsNonRoot           
-         msg := sprintf("Container '%v' is running as root, which is not allowed.",       [container.name])        
-    } 
-    
-     ````
+````
+kubectl get pods -n gatekeeper-system
+````
 
     __🔹 Étape 3 : Appliquer une Constraint (Faire respecter la politique) ⚡__
 
