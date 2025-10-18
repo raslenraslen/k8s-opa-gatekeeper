@@ -37,6 +37,8 @@ Il ne fait pas partie du noyau Kubernetes, mais il s’appuie sur OPA pour faire
 
 💪 Ensemble, ils te permettent d’apporter une couche de sécurité dynamique et automatisée à ton cluster Kubernetes.
 
+![alt text](Screenshots/gatekeeper.png)
+
 # 🛠️ Étape par étape : Configurer OPA dans Kubernetes avec Gatekeeper 
 
 
