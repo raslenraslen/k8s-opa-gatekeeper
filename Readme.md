@@ -63,6 +63,3 @@ kubectl get pods -n gatekeeper-system
 kubectl get pods -n gatekeeper-system
 ````
 
-    __🔹 Étape 3 : Appliquer une Constraint (Faire respecter la politique) ⚡__
-
-
