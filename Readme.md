@@ -154,3 +154,15 @@ OPA Gatekeeper prend en charge le mode audit, ce qui permet de détecter les mau
 kubectl get constrainttemplates  
 kubectl get k8spsprestrictrunasroot 
 ````
+
+# 🔹 Autres politiques mises en place 🛡️
+
+En plus de la règle “pas de conteneurs root”, d’autres politiques ont été configurées pour renforcer la sécurité du cluster :
+
+🚫 Interdire l’utilisation de NodePort pour limiter l’exposition directe des services.
+
+🆕 Ne pas utiliser l’image latest pour garantir des versions stables et prévisibles des conteneurs.
+
+🔒 Interdire les conteneurs privilégiés pour réduire les risques d’élévation de privilèges.
+
+📏 Appliquer des limites de ressources (CPU et mémoire) pour tous les pods afin de prévenir la surconsommation et assurer la stabilité du cluster.
