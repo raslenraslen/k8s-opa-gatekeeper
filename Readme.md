@@ -39,6 +39,29 @@ Il ne fait pas partie du noyau Kubernetes, mais il s’appuie sur OPA pour faire
 
 ![alt text](Screenshots/gatekeeper.png)
 
+# 📝 Prérequis
+Avant de commencer, assurez-vous de disposer d’un cluster Kubernetes fonctionnel.
+
+Si vous n’en avez pas encore :
+
+Vous pouvez lancer  :
+
+**💻 Via script shell prêt à l’emploi :**
+
+````
+cd cluster-k8s-shell
+. create-cluster.sh
+````
+
+Ou si vous préférez créer le cluster via Ansible, utilisez :
+
+**⚙️ Via Ansible :**
+````
+cd cluster-k8s-ansible/cluster-k8s
+ansible-playbook -i inventory.ini site.yml
+
+````
+
 # 🛠️ Étape par étape : Configurer OPA dans Kubernetes avec Gatekeeper 
 
 
@@ -166,3 +189,10 @@ En plus de la règle “pas de conteneurs root”, d’autres politiques ont ét
 🔒 Interdire les conteneurs privilégiés pour réduire les risques d’élévation de privilèges.
 
 📏 Appliquer des limites de ressources (CPU et mémoire) pour tous les pods afin de prévenir la surconsommation et assurer la stabilité du cluster.
+
+
+
+🎯 Vous avez maintenant OPA Gatekeeper opérationnel et plusieurs politiques appliquées ! 
+Vous pouvez créer de nouvelles policies selon vos besoins.
+
+![alt text](Screenshots/opa.png)
