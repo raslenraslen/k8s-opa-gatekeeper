@@ -1,6 +1,6 @@
 # 🔐 Enforcing Policy-as-Code in Kubernetes with OPA and Gatekeeper 
 
-![alt text](Screenshots/Screenshot.png)
+![alt text](Screenshots/homme.png)
 
 🚨 La sécurité ne doit jamais être une réflexion de dernière minute — c’est la véritable armure 🦾 de ton application.
 
