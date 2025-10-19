@@ -114,3 +114,43 @@ spec:
 kubectl apply -f constrainttemplate-runasnonroot.yaml  
 kubectl apply -f constraint-runasnonroot.yaml 
 ````
+
+**🔹 Étape 4 : Tester la politique 🧪**
+
+⚠️ Essayez de déployer un pod non conforme 🚫
+
+````
+apiVersion: v1  
+kind: Pod  
+metadata:   
+  name: test-bad-pod  
+spec:   
+  containers:   
+    - name: nginx     
+      image: nginx 
+
+````
+
+
+▶️ Exécutez-le
+
+````
+kubectl apply -f test-bad-pod.yaml 
+````
+
+**✅ Résultat attendu**
+
+Le déploiement est refusé avec une erreur du type : ⚠️
+
+````
+Container 'nginx' is running as root, which is not allowed. 
+````
+
+**🔹 Étape 5 : Auditer les ressources existantes 🕵️‍♂️**
+
+OPA Gatekeeper prend en charge le mode audit, ce qui permet de détecter les mauvaises configurations des ressources déjà en fonctionnement sans les bloquer.
+
+````
+kubectl get constrainttemplates  
+kubectl get k8spsprestrictrunasroot 
+````
